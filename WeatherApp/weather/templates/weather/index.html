@@ -13,20 +13,24 @@
       </nav>
       <a class="btn btn-outline-primary" href="#">Документация</a>
     </div>
-    <div class='container'>
-      <h1>Погодное приложение</h1>
+    <div class='container mt-5'>
       <div class='row'>
-        <div class='col-5 offset-1'>
-          <form action=''>
+        <div class='col-5'>
+          <h1>Погодное приложение</h1>
+          <form action='' method='post'>
+            {% csrf_token %}
             <label for='city'>Город</label>
-            <input type='text' id='city' class='formcontrol' name='city'
-            placeholder='Введите город'>
+            {{ form.name }}
+            <!-- <input type='text' id='city' class='form-control' name='city'
+            placeholder='Введите город'> -->
             <input class='mt-2 btn btn-danger' type='submit' name='send' value='Узнать'>
           </form>
         </div>
 
         <div class='col-5 offset-2'>
           <h1>Информация</h1>
+
+          {% for info in all_info%}
           <div class='alert alert-info'>
             <div class='row'>
               <div class='col-9'>
@@ -38,6 +42,10 @@
               </div>
             </div>
           </div>
+
+          {% endfor %}
+
+
         </div>
       </div>
     </div>
