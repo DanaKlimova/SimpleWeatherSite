@@ -20,11 +20,13 @@ def index(request):
 
     for city in cities:
         response = requests.get(url.format(city.name)).json()  #get data in dictionary format
-        city_info = {
-        'city': city.name,
-        'temp': response['main']['temp'],
-        'icon': response['weather'][0]['icon']
-        }
+        if response.get('message') == None:
+            # print(response )
+            city_info = {
+            'city': city.name,
+            'temp': response['main']['temp'],
+            'icon': response['weather'][0]['icon']
+            }
 
         all_cities.append(city_info)
 
